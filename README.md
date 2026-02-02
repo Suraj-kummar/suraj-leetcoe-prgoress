@@ -1,5 +1,10 @@
 # Welcome to GitHub Desktop!
 
-This is your README. READMEs are where you can communicate what your project is and how to use it.
+this is readme file 
 
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+
+ this is for all leetcoder out there , who facing issuse to chech there code.... so you can check here 
+
+
+
+only for study prupose

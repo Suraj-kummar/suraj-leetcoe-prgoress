@@ -5,7 +5,7 @@ struct TrieNode {
   unordered_map<string, shared_ptr<TrieNode>> children;
   bool deleted = false;
 };
- 
+  
 
 class Solution {
  public:

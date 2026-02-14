@@ -1,7 +1,6 @@
 #java 
 
 
-
 class Solution {
     public int minimumCost(int[] nums) {
         int a = nums[0], b = 100, c = 100;

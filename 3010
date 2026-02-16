@@ -9,7 +9,7 @@ class Solution {
                 c = b;
                 b = nums[i];
             } else if (nums[i] < c) {
-                c = nums[i];
+                c = nums[i];  
             }
         }
         return a + b + c;

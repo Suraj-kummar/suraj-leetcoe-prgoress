@@ -9,7 +9,7 @@ class Multiset {
 
   public void remove(int num) {
     map.merge(num, -1, Integer::sum);
-    if (map.get(num) == 0)
+    if (map.get(num) == 0) 
       map.remove(num);
     --sz;
   }

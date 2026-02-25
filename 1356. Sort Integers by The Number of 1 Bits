@@ -1,0 +1,33 @@
+`````````
+
+java
+
+diffuctulty :- EASY
+```````````````````
+
+
+import java.util.Arrays;
+
+class Solution {
+    public int[] sortByBits(int[] arr) {
+        // Step 1: Encode the bit count into the numbers
+        for (int i = 0; i < arr.length; i++) {
+            // Integer.bitCount() gets the number of 1s.
+            // Shift it left by 16 bits and add it to the original number.
+            arr[i] += Integer.bitCount(arr[i]) << 16;
+        }
+        
+        // Step 2: Sort the array
+        // Numbers with more 1s will be larger due to the upper 16 bits.
+        // If 1s are equal, the lower 16 bits (original value) determine the order.
+        Arrays.sort(arr);
+        
+        // Step 3: Decode the numbers back to their original values
+        for (int i = 0; i < arr.length; i++) {
+            // Use bitwise AND with a mask (0xFFFF) to keep only the lower 16 bits
+            arr[i] &= 0xFFFF; 
+        }
+        
+        return arr;
+    }
+}

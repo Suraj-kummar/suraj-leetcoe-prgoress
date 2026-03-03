@@ -5,7 +5,7 @@ class Solution {
     // suffixZeros[i] := the number of suffix zeros in the i-th row
     int[] suffixZeros = new int[n];
 
-    for (int i = 0; i < grid.length; ++i)
+    for (int i = 0; i < grid.length; ++i) 
       suffixZeros[i] = getSuffixZeroCount(grid[i]);
 
     for (int i = 0; i < n; ++i) {

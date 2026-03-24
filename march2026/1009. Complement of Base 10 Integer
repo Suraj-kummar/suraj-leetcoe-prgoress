@@ -1,0 +1,17 @@
+lass Solution {
+    public int bitwiseComplement(int n) {
+        // Edge case: if n is 0, its complement is 1
+        if (n == 0) return 1;
+        
+        int mask = 1;
+        
+        // Build the mask to have the same number of bits as n
+        // mask = (mask << 1) | 1 shifts bits left by 1 and adds a 1 at the end
+        while (mask < n) {
+            mask = (mask << 1) | 1;
+        }
+        
+        // XOR n with the mask to flip the bits
+        return n ^ mask;
+    }
+}

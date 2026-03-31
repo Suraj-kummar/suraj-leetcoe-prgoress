@@ -1,0 +1,56 @@
+class Solution {
+    public boolean canPartitionGrid(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        long totalSum = 0;
+
+        // Step 1: Calculate the total sum of the entire grid
+        // Using long to prevent overflow (max sum could be 10^10)
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                totalSum += grid[i][j];
+            }
+        }
+
+        // If the total sum is odd, it's impossible to split into two equal integers
+        if (totalSum % 2 != 0) {
+            return false;
+        }
+
+        long target = totalSum / 2;
+
+        // Step 2: Check Horizontal Cuts (between rows)
+        long currentHorizontalSum = 0;
+        // We stop at m - 1 because each section must be non-empty
+        for (int i = 0; i < m - 1; i++) {
+            for (int j = 0; j < n; j++) {
+                currentHorizontalSum += grid[i][j];
+            }
+            if (currentHorizontalSum == target) {
+                return true;
+            }
+            // Optimization: if we already exceeded target, no need to check further rows
+            if (currentHorizontalSum > target) {
+                break; 
+            }
+        }
+
+        // Step 3: Check Vertical Cuts (between columns)
+        long currentVerticalSum = 0;
+        // We stop at n - 1 because each section must be non-empty
+        for (int j = 0; j < n - 1; j++) {
+            for (int i = 0; i < m; i++) {
+                currentVerticalSum += grid[i][j];
+            }
+            if (currentVerticalSum == target) {
+                return true;
+            }
+            // Optimization: if we already exceeded target, no need to check further columns
+            if (currentVerticalSum > target) {
+                break;
+            }
+        }
+
+        return false;
+    }
+}

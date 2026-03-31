@@ -1,0 +1,66 @@
+import java.util.TreeSet;
+
+class Solution {
+    public int[] getBiggestThree(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        // TreeSet keeps elements distinct and sorted in ascending order
+        TreeSet<Integer> topThree = new TreeSet<>();
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                
+                // 1. Base case: Area 0 rhombus
+                topThree.add(grid[i][j]);
+                if (topThree.size() > 3) {
+                    topThree.pollFirst(); // Remove the smallest element
+                }
+
+                // 2. Expand rhombus size L
+                int L = 1;
+                // Check if the bottom, left, and right vertices are within bounds
+                while (i + 2 * L < m && j - L >= 0 && j + L < n) {
+                    int rhombusSum = 0;
+
+                    // Traverse the 4 edges of the rhombus
+                    // Top to Right edge
+                    for (int k = 0; k < L; k++) {
+                        rhombusSum += grid[i + k][j + k];
+                    }
+                    // Right to Bottom edge
+                    for (int k = 0; k < L; k++) {
+                        rhombusSum += grid[i + L + k][j + L - k];
+                    }
+                    // Bottom to Left edge
+                    for (int k = 0; k < L; k++) {
+                        rhombusSum += grid[i + 2 * L - k][j - k];
+                    }
+                    // Left to Top edge
+                    for (int k = 0; k < L; k++) {
+                        rhombusSum += grid[i + L - k][j - L + k];
+                    }
+
+                    topThree.add(rhombusSum);
+                    if (topThree.size() > 3) {
+                        topThree.pollFirst();
+                    }
+                    
+                    L++;
+                }
+            }
+        }
+
+        // 3. Convert the TreeSet to an array in descending order
+        int[] result = new int[topThree.size()];
+        int idx = result.length - 1;
+        
+        // Iterating through the TreeSet gives us elements in ascending order,
+        // so we fill the array from back to front to get descending order.
+        for (int val : topThree) {
+            result[idx--] = val;
+        }
+
+        return result;
+    }
+}

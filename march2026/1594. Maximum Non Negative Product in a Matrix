@@ -1,0 +1,56 @@
+class Solution {
+    // Modulo value for the result
+    private static final int MOD = (int) 1e9 + 7;
+
+    public int maxProductPath(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+      
+        // dp[i][j][0] stores the minimum product to reach cell (i, j)
+        // dp[i][j][1] stores the maximum product to reach cell (i, j)
+        // We track both min and max because negative numbers can flip the relationship
+        long[][][] dp = new long[rows][cols][2];
+      
+        // Initialize starting cell with its value for both min and max
+        dp[0][0][0] = grid[0][0];
+        dp[0][0][1] = grid[0][0];
+      
+        // Initialize first column (can only come from above)
+        for (int i = 1; i < rows; i++) {
+            dp[i][0][0] = dp[i - 1][0][0] * grid[i][0];
+            dp[i][0][1] = dp[i - 1][0][1] * grid[i][0];
+        }
+      
+        // Initialize first row (can only come from left)
+        for (int j = 1; j < cols; j++) {
+            dp[0][j][0] = dp[0][j - 1][0] * grid[0][j];
+            dp[0][j][1] = dp[0][j - 1][1] * grid[0][j];
+        }
+      
+        // Fill the dp table for remaining cells
+        for (int i = 1; i < rows; i++) {
+            for (int j = 1; j < cols; j++) {
+                int currentValue = grid[i][j];
+              
+                if (currentValue >= 0) {
+                    // For positive values:
+                    // - Minimum stays minimum after multiplication
+                    // - Maximum stays maximum after multiplication
+                    dp[i][j][0] = Math.min(dp[i - 1][j][0], dp[i][j - 1][0]) * currentValue;
+                    dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i][j - 1][1]) * currentValue;
+                } else {
+                    // For negative values:
+                    // - Previous maximum becomes new minimum after multiplication
+                    // - Previous minimum becomes new maximum after multiplication
+                    dp[i][j][0] = Math.max(dp[i - 1][j][1], dp[i][j - 1][1]) * currentValue;
+                    dp[i][j][1] = Math.min(dp[i - 1][j][0], dp[i][j - 1][0]) * currentValue;
+                }
+            }
+        }
+      
+        // Get the maximum product at the destination cell
+        long maxProduct = dp[rows - 1][cols - 1][1];
+      
+        // Return -1 if the maximum product is negative, otherwise return modulo result
+        return maxProduct < 0 ? -1 : (int) (maxProduct % MOD);
+    }}

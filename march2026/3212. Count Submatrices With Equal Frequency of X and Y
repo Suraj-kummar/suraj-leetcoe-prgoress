@@ -1,0 +1,28 @@
+class Solution {
+    public int numberOfSubmatrices(char[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        
+        // 2D arrays to store prefix counts of 'X' and 'Y'
+        int[][] prefX = new int[rows + 1][cols + 1];
+        int[][] prefY = new int[rows + 1][cols + 1];
+        
+        int result = 0;
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                // Standard 2D prefix sum update
+                prefX[i + 1][j + 1] = prefX[i][j + 1] + prefX[i + 1][j] - prefX[i][j] + (grid[i][j] == 'X' ? 1 : 0);
+                prefY[i + 1][j + 1] = prefY[i][j + 1] + prefY[i + 1][j] - prefY[i][j] + (grid[i][j] == 'Y' ? 1 : 0);
+                
+                // Condition 1: Equal frequency of X and Y
+                // Condition 2: At least one X
+                if (prefX[i + 1][j + 1] == prefY[i + 1][j + 1] && prefX[i + 1][j + 1] > 0) {
+                    result++;
+                }
+            }
+        }
+        
+        return result;
+    }
+}

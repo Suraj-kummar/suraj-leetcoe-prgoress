@@ -1,0 +1,32 @@
+class Solution {
+    public boolean findRotation(int[][] mat, int[][] target) {
+        int n = mat.length;
+        
+        // Flags to track if a specific rotation is still valid
+        boolean[] match = {true, true, true, true}; // 0, 90, 180, 270 degrees
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                // Check 0 degrees
+                if (mat[i][j] != target[i][j]) {
+                    match[0] = false;
+                }
+                // Check 90 degrees clockwise
+                if (mat[i][j] != target[j][n - 1 - i]) {
+                    match[1] = false;
+                }
+                // Check 180 degrees
+                if (mat[i][j] != target[n - 1 - i][n - 1 - j]) {
+                    match[2] = false;
+                }
+                // Check 270 degrees clockwise
+                if (mat[i][j] != target[n - 1 - j][i]) {
+                    match[3] = false;
+                }
+            }
+        }
+
+        // If any rotation is still valid, return true
+        return match[0] || match[1] || match[2] || match[3];
+    }
+}

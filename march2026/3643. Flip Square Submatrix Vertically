@@ -1,0 +1,39 @@
+class Solution {
+    public int flipSquare(int[][] matrix) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+        
+        // 1. Calculate the target matrix (all 1s)
+        int[][] target = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                target[i][j] = 1;
+            }
+        }
+        
+        // 2. Calculate the difference matrix (XOR)
+        // This tells us exactly which cells need to be flipped
+        int[][] diff = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                diff[i][j] = matrix[i][j] ^ target[i][j];
+            }
+        }
+        
+        // 3. Check if the difference matrix has a valid "mountain" pattern
+        // A valid pattern means each row is a mountain (0...011...10...0)
+        for (int i = 0; i < n; i++) {
+            if (!isMountain(diff[i])) {
+                return -1;
+            }
+        }
+        
+        // 4. Calculate the minimum flips using the mountain property
+        // The minimum flips for a row is the index of the first '1'
+        int minFlips = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            int flips = getFirstOneIndex(diff[i]);
+            minFlips = Math.min(minFlips, flips);
+        }
+        
+        return minFlips;

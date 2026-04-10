@@ -12,3 +12,4 @@ class Solution {
         return evenMatch && oddMatch;
     }
 }
+// progress update

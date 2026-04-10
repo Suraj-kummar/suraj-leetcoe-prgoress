@@ -54,3 +54,4 @@ class Solution {
         // Return -1 if the maximum product is negative, otherwise return modulo result
         return maxProduct < 0 ? -1 : (int) (maxProduct % MOD);
     }}
+// progress update

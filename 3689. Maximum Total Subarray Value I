@@ -1,0 +1,19 @@
+class Solution {
+    public long maxTotalSubarrayValue(int[] nums, int k) {
+        int maxVal = nums[0];
+        int minVal = nums[0];
+        
+        // Find the global max and min
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > maxVal) {
+                maxVal = nums[i];
+            }
+            if (nums[i] < minVal) {
+                minVal = nums[i];
+            }
+        }
+        
+        // Return as long to prevent overflow
+        return (long) (maxVal - minVal) * k;
+    }
+}

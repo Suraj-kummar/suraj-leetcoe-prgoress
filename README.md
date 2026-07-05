@@ -44,6 +44,7 @@ only for study prupose
 ## Array
 |  |
 | ------- |
+| [1301-number-of-paths-with-max-score](https://github.com/Suraj-kummar/suraj-leetcoe-prgoress/tree/master/1301-number-of-paths-with-max-score) |
 | [3620-network-recovery-pathways](https://github.com/Suraj-kummar/suraj-leetcoe-prgoress/tree/master/3620-network-recovery-pathways) |
 ## Binary Search
 |  |
@@ -52,6 +53,7 @@ only for study prupose
 ## Dynamic Programming
 |  |
 | ------- |
+| [1301-number-of-paths-with-max-score](https://github.com/Suraj-kummar/suraj-leetcoe-prgoress/tree/master/1301-number-of-paths-with-max-score) |
 | [3620-network-recovery-pathways](https://github.com/Suraj-kummar/suraj-leetcoe-prgoress/tree/master/3620-network-recovery-pathways) |
 ## Topological Sort
 |  |
@@ -65,4 +67,8 @@ only for study prupose
 |  |
 | ------- |
 | [3620-network-recovery-pathways](https://github.com/Suraj-kummar/suraj-leetcoe-prgoress/tree/master/3620-network-recovery-pathways) |
+## Matrix
+|  |
+| ------- |
+| [1301-number-of-paths-with-max-score](https://github.com/Suraj-kummar/suraj-leetcoe-prgoress/tree/master/1301-number-of-paths-with-max-score) |
 <!---LeetCode Topics End-->
